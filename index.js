@@ -62,3 +62,30 @@ function cvIterator(profiles){
         }
     }
 }
+
+const candidates = cvIterator(data);
+nextCV();
+// button listener for next bu
+
+let nextBtn = document.getElementById('nextBtn');
+nextBtn.addEventListener('click', nextCV); 
+function nextCV(){
+    const currentCandidate = candidates.next().value;
+
+    let imageCV = document.getElementById('imageCV');
+    let profile = document.getElementById('profile');
+
+    if(currentCandidate!=undefined){
+    imageCV.innerHTML = `<img src='${currentCandidate.image}'>`
+    profile.innerHTML = `<ul class="list-group">
+    <li class="list-group-item active" aria-current="true">Name is ${currentCandidate.name}</li>
+    <li class="list-group-item">Age is ${currentCandidate.age}</li>
+    <li class="list-group-item">Lives in ${currentCandidate.city}</li>
+    <li class="list-group-item">Primarily WOrks on  ${currentCandidate.languages}</li>
+    <li class="list-group-item">with FrameWOrk ${currentCandidate.frameWork}</li>
+  </ul>`;}
+  else{
+    alert("End of candidate applications");
+    window.location.reload();
+  }
+}
